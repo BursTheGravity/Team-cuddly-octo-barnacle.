@@ -142,7 +142,7 @@ public class Binary {
 			ans += n;
 		}
 		else {
-			ans = binToDecR(s.substring(0, s.length() - 1)) + Math/pow(2, (n % 2)*s.length());
+			ans = binToDecR(s.substring(0, s.length() - 1)) + (int) (Math.pow(2, (n % 2)*s.length()));
 		}
 		return ans;
 	}
