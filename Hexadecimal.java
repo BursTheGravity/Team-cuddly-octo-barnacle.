@@ -116,12 +116,16 @@ public class Hexadecimal {
 		hexToDec("1110") -> 14
 	=====================================*/
 	public static int hexToDec( String s ) {
-		int ans = 0;
-		for (int x = s.length(); x > 0 ; x += 1) {
-			ans += Math.pow(16, Integer.parseInt(s.substring(x - 1, x)));
+		int ret = 0;
+		
+		while (s.length() > 0){
+	    		ret += (int)(HEXDIGITS.indexOf(s.substring(0,1)) * (Math.pow (16, (s.length()-1) ))); 
+	    		//Multiplies the first digit by 16 to the necessary power and then adds that number to the return statement
+	    		s = s.substring(1);//shortens the string so that the first digit is the next digit and the previous statement can be done again
 		}
-		return ans;
-	}
+		
+		return ret;
+    	}
 	
 	
 	/*=====================================
@@ -135,17 +139,15 @@ public class Hexadecimal {
 		hexToDecR("11") -> 3
 		hexToDecR("1110") -> 14
 	=====================================*/
+	
 	public static int hexToDecR( String s ) { 
-		int ans = 0;
-		int n = Integer.parseInt(s);
-		if (n < 16) {
-			ans += n;
-		}
-		else {
-			ans = hexToDecR(s.substring(0, s.length() - 1)) + (int) ( Math.pow(16, (n % 16) * s.length() ));
-		}
-		return ans;
-	}
+		if (s.length() == 0)//base case
+			return 0;
+		return (int)((HEXDIGITS.indexof(s.substring(0,1)))*(Math.pow(16, (s.length()-1)))) + hexToDecR(s.substring(1));
+		//to convert from hex to dec this method multipies the first digit by 16 raised to the necessary power(length-1) 
+		//and then adds that quantity to the decimal version of the everything but the first digit
+    }
+    
 	
 	
 	/*=============================================
