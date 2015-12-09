@@ -64,10 +64,9 @@ public class Hexadecimal {
 		pre:  n >= 0
 		post: returns String of bits
 		eg  decToBin(0) -> "0"
-		decToBin(1) -> "1"
-		decToBin(2) -> "10"
-		decToBin(3) -> "11"
-		decToBin(14) -> "1110"
+		decToBinR(1) -> "1"
+		decToBinR(13) -> "D"
+		decToBinR(47) -> "2E"
 	=====================================*/
     public static String decToHex( int n ) {
 		String ans = "";
@@ -88,9 +87,8 @@ public class Hexadecimal {
 		post: returns String of bits
 		eg  decToBinR(0) -> "0"
 		decToBinR(1) -> "1"
-		decToBinR(2) -> "10"
-		decToBinR(3) -> "11"
-		decToBinR(14) -> "1110"
+		decToBinR(13) -> "D"
+		decToBinR(47) -> "2E"
 	=====================================*/
 	public static String decToHexR( int n ) { 
 		String ans = "";
@@ -109,11 +107,10 @@ public class Hexadecimal {
 		pre:  s represents non-negative hexadecimal number
 		post: returns decimal equivalent as int
 		eg  
-		hexToDec("0") -> 0
-		hexToDec("1") -> 1
-		hexToDec("10") -> 2
-		hexToDec("11") -> 3
-		hexToDec("1110") -> 14
+		hexToDecR("0") -> 0
+		hexToDecR("1") -> 1
+		hexToDecR("D") -> 13
+		hexToDecR("2E") -> 46
 	=====================================*/
 	public static int hexToDec( String s ) {
 		int ret = 0;
@@ -135,9 +132,8 @@ public class Hexadecimal {
 		eg  
 		hexToDecR("0") -> 0
 		hexToDecR("1") -> 1
-		hexToDecR("10") -> 2
-		hexToDecR("11") -> 3
-		hexToDecR("1110") -> 14
+		hexToDecR("D") -> 13
+		hexToDecR("2E") -> 46
 	=====================================*/
 	
 	public static int hexToDecR( String s ) { 
@@ -157,8 +153,22 @@ public class Hexadecimal {
 		Object), or if this and other represent equal hexary values
 	=============================================*/
 	public boolean equals( Object other ) { 
-		return ( this == other || this._hexNum.equals( ((Hexadecimal)other)._hexNum ) );
-	}
+	
+	//First, check for aliasing
+	if (this == other)
+	    return true;
+	
+	//Next, check if this input and Object are differnet objects
+	if  (!(other instanceof Binary))
+	    return false;
+	
+	//Last, check if they are equal in Value
+	if (compareTo(other) == 0)
+	    return true;
+
+	//Otherwise must be false
+	return false;
+    }
 	
 	
 	/*=============================================
@@ -168,16 +178,15 @@ public class Hexadecimal {
 		negative integer if this<input, positive integer otherwise
 	=============================================*/
 	public int compareTo( Object other ) {
-		if (this.equals(other)) {
-			return 0;
-		}
-		else if (this._decNum < ((Hexadecimal)other)._decNum) {
-			return -1;
-			}
-		else { 
-			return 1;
-		}
-	}
+		
+	if (_decNum > ((Hexadecimal)other)._decNum)
+	    return 1
+	    
+	if (_decNum == ((Hexadecimal)other)._decNum)
+	    return 0
+	    
+	return -1;
+    }
 	
 	
 	//main method for testing
@@ -186,8 +195,8 @@ public class Hexadecimal {
 			System.out.println();
 			System.out.println( "Testing ..." );
 			
-			Hexadecimal b1 = new Hexadecimal(15);
-			Hexadecimal b2 = new Hexadecimal(15);
+			Hexadecimal b1 = new Hexadecimal(46);
+			Hexadecimal b2 = new Hexadecimal("2E");
 			Hexadecimal b3 = b1;
 			Hexadecimal b4 = new Hexadecimal(27);
 			
