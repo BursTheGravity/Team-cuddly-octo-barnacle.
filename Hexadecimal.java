@@ -139,7 +139,7 @@ public class Hexadecimal {
 	public static int hexToDecR( String s ) { 
 		if (s.length() == 0)//base case
 			return 0;
-		return (int)((HEXDIGITS.indexof(s.substring(0,1)))*(Math.pow(16, (s.length()-1)))) + hexToDecR(s.substring(1));
+		return (int)((HEXDIGITS.indexOf(s.substring(0,1)))*(Math.pow(16, (s.length()-1)))) + hexToDecR(s.substring(1));
 		//to convert from hex to dec this method multipies the first digit by 16 raised to the necessary power(length-1) 
 		//and then adds that quantity to the decimal version of the everything but the first digit
     }
@@ -180,10 +180,10 @@ public class Hexadecimal {
 	public int compareTo( Object other ) {
 		
 	if (_decNum > ((Hexadecimal)other)._decNum)
-	    return 1
+	    return 1;
 	    
 	if (_decNum == ((Hexadecimal)other)._decNum)
-	    return 0
+	    return 0;
 	    
 	return -1;
     }
@@ -219,8 +219,8 @@ public class Hexadecimal {
 			System.out.println( "\n.compareTo..." );
 			System.out.println( b1.compareTo(b2) ); //should be 0
 			System.out.println( b1.compareTo(b3) ); //should be 0
-			System.out.println( b1.compareTo(b4) ); //should be neg
-			System.out.println( b4.compareTo(b1) ); //should be pos
+			System.out.println( b1.compareTo(b4) ); //should be pos
+			System.out.println( b4.compareTo(b1) ); //should be neg
 			/*=========================================
 		=========================================*/
 	}//end main()
