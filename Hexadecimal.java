@@ -159,7 +159,7 @@ public class Hexadecimal {
 	    return true;
 	
 	//Next, check if this input and Object are differnet objects
-	if  (!(other instanceof Binary))
+	if  (!(other instanceof Hexadecimal))
 	    return false;
 	
 	//Last, check if they are equal in Value
